@@ -1,0 +1,152 @@
+#instruct-head {
+    font-family: sans-serif;
+    color: #ed5328; 
+    font-size: 16px;
+}
+
+.instructions {
+    width: 80%;
+    margin: 0 auto;
+    background: #ffe5e5;
+    text-align: center;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.input-form {
+    text-align: center;
+    margin: 20px 0;
+    font-family: sans-serif; 
+}
+
+.highlight-form {
+    background: #f7faff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.input-form div {
+    display: inline-block;
+}
+
+.input-form input {
+    margin: 0 5px;
+    border: 2px solid #d6ddff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+#save-form {
+    font-size: 18px;
+    display: block;
+    margin: 10px auto;
+    padding: 10px 15px;
+
+}
+
+#search {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 2px solid #d6ddff;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.display-table {
+    margin: 0 auto;
+    position: absolute;
+    right: 25%;
+}
+
+table {
+    margin: 0 auto;
+    text-align: center;
+    /* width: 50%; */
+}
+
+/* special background for table headings */
+.table-head {
+    background: #d6ddff;
+}
+
+th {
+    border: 0px;
+    margin: 0px;
+}
+
+tr {
+    background: #f7faff;
+    border: 2px solid #d6ddff;
+}
+
+td, th {
+    padding: 5px 10px;
+    font-family: sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+/* th for fields */
+.field-head {
+    width: 100px;
+}
+
+.edit-name {
+    width: 200px;
+    text-align: center;
+}
+
+/* th for rest of the columns */
+.rest-head {
+    width: 45px;
+}
+
+th {
+    padding: 15px 10px;
+}
+
+/* do not apply styles for the table to buttons column in table */
+.untable {
+    border: none;
+    background: white;
+    border-radius: 0;
+    width: 40px;
+}
+
+
+/* for input fields in table except edit name field*/
+.edit-student {
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+}
+
+#input-error, #edit-error {
+    color: #ed5328;
+}
+
+#input-error {
+    height: 25px;
+    margin: 0;
+}
+
+#edit-error-td {
+    background: white;
+    padding: 0;
+}
+
+#edit-error {
+    background: white;
+    display: inline-block;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    background: white;
+    font-size: 15px;
+    vertical-align: middle;
+}

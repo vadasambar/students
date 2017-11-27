@@ -1,0 +1,62 @@
+<div ng-controller="studentsController">
+    <div class="instructions"><b id="instruct-head">Instructions:</b> Make sure the name is alphabets (only), grade is a positive number (only), roll number is a positive number (only)</div>
+    
+    <!-- to add a new student -->
+    <div class="input-form">
+        <div class="highlight-form">
+            <div>Name <input ng-pattern="/^[a-zA-Z\s]+$/" ng-model="newStudent.name"></div>
+            <div>Grade <input ng-pattern="/^[0-9]+$/" ng-model="newStudent.grade"></div>
+            <div>Roll <input class="roll" ng-pattern="/^[0-9]+$/" ng-model="newStudent.roll"></div>
+        </div>
+        <button id="save-form" ng-click="addStudent()">Save</button>
+        <div ng-show="isInputInvalid">
+            <p id="input-error">Invalid Data! Read <b>Instructions</b></p>
+        </div>
+
+        <!-- blank div for no error. just to fill the space -->
+        <div style="height: 25px;" ng-show="isInputInvalid == false">
+            <p></p>
+        </div>
+    </div>
+    
+    <!-- table to show all students  -->
+    <div class="display-table">
+         <input id="search" placeholder="search" ng-model="searchText">
+        <table>
+            <tr class="table-head">
+                <th class="field-head edit-name">Name</th>
+                <th class="field-head">Class</th>
+                <th class="field-head">Roll No.</th>
+                <th class="rest-head"></div></th> <!-- delete column -->
+                <th class="rest-head"></div></th> <!-- edit column -->
+                <th class="untable rest-head"></div></th> <!-- for error messages  -->
+            </tr>
+            
+            <!-- filter automatically searches inside objects -->
+            <tr ng-repeat="student in students | filter:searchText" ng-include="getTemplate(student)">
+            </tr>     
+
+            <!-- template to display data -->
+            <script type="text/ng-template" id="display"> 
+                <td>{{student.name}}</td>
+                <td> {{student.grade}}</td>
+                <td> {{student.roll}}</td>
+                <td><button ng-click="editStudent(student)" >Edit</button></td>        
+                <!-- $index is the current index in for loop -->
+                <td><button ng-click="delStudent($index)">Del</button></td>
+            </script>
+            
+            <!-- template to edit data -->
+            <script type="text/ng-template" id="edit">
+                <td><input class="edit-name" ng-pattern="/^[a-zA-Z\s]+$/" ng-model="toEdit.name"></td>
+                <td><input class="edit-student" ng-pattern="/^[0-9]+$/" ng-model="toEdit.grade"></td>
+                <td><input class="edit-student" ng-pattern="/^[0-9]+$/" ng-model="toEdit.roll"></td>
+                <td><button ng-click="saveEdit($index)" >Save</button></td>        
+                <td><button ng-click="reset()">Reset</button></td>
+                <td id="edit-error-td" ng-show="isEditInvalid"><div id="edit-error">Invalid!</div></td>
+            </script>
+        </table> 
+
+</div>
+</div>
+
