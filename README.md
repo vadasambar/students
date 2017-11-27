@@ -1,24 +1,12 @@
-# README
+A single page student management application.
+Made using Angular + Rails + MongoDB stack.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+####Offers:
+* CRUD operations
+* Data validity checks (front end side)
+* Quick Search 
 
-Things you may want to cover:
+####Dependencies: 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [angularjs-rails](https://rubygems.org/gems/angularjs-rails/versions/1.3.0) 1.3.0
+* [mongoid](https://rubygems.org/gems/mongoid/versions/5.1.3)
