@@ -34,7 +34,7 @@ module RecordsDoc
 	api! "Get all the students"
 	formats ['json']
 	description <<-EOS
-		== Full description
+		## Full description
 			Gets all the student records from the database. 
 	EOS
 	def index
@@ -114,7 +114,7 @@ module RecordsDoc
 	# PUT new data in place of some old data in a student
 	api! "Update the student info"
 	description <<-EOS
-		== Full description
+		## Full description
 			You can update a student using id.
 
 			E.g., if student id = "5a1bdd440e72df0a2a5783a4"
@@ -133,7 +133,7 @@ module RecordsDoc
 	# DELETE a student 
 	api! "Delete a student"  
 	description <<-EOS
-		== Full description
+		## Full description
 			Send a DELETE request to /records/:id
 
 			E.g., if student id = "5a1bdd440e72df0a2a5783a4"
