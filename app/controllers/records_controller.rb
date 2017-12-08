@@ -1,25 +1,36 @@
 class RecordsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
-  
-  # GET all students
+  # skip_before_action :verify_authenticity_token 
+  # include Apipie::Markup::Markdown
+  include RecordsDoc
+
+
+  # Title doc 
+  resource_description do
+    short 'Create, Read, Update and Delete a Student'
+    formats ['json']
+    description <<-EOS
+      Used to handle the data behind the scenes on the front end side. 
+    EOS
+    api_versions "1", "2"
+  end
+
   def index
     cleaned_json = clean_json Record.all 
-    render json: cleaned_json # this is built-in to_json method. It respects my as_json override from BSON::ObjectID
+    # this is built-in to_json method. It respects my as_json override from BSON::ObjectID
+    # render json: Record.all 
+    render json: cleaned_json
   end
 
-  # GET the last added student
   def last
-    render json: clean_json(Record.last) # clean json and fix make json: pick up the overriden as_json of BSON::ObjectID
+    render json: Record.last # clean json and fix make json: pick up the overriden as_json of BSON::ObjectID
   end
 
-  # POST a new student into students
   def create
-    Record.create(verify_params)
+    render json: Record.create(verify_params)
   end
 
-  # PUT new data in place of some old data in a student
   def update
-   record =  Record.find_by(id: verify_params[:id]) # get the student
+   record =  Record.find_by(_id: verify_params[:id]) # get the student
    record.update(name: verify_params[:name]) 
    record.update(grade: verify_params[:grade])
    record.update(roll: verify_params[:roll])
@@ -27,7 +38,6 @@ class RecordsController < ApplicationController
    render json: {} # to return 200 OK instead of 204 
   end
 
-  # DELETE a student 
   def destroy
     Record.find_by(id: verify_params[:id]).destroy
   end
@@ -37,6 +47,7 @@ class RecordsController < ApplicationController
   # permit only the data which has all four fields filled.
   def verify_params
     # since I am passing id to the html page
+    puts "PARAMS: " + params.to_s
     params.permit(:name, :grade, :roll, :id)
   end
 
@@ -50,7 +61,7 @@ class RecordsController < ApplicationController
       end
     else
       json_data["id"] = json_data.delete "_id" # if the json_data is not an array
-      end
+    end
 
     json_data
   end

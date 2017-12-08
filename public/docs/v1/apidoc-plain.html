@@ -1,0 +1,446 @@
+  <h4><a href='#records'>Records</a></h4>
+  <ul>
+      <li><a href='#records-index'>index</a></li>
+      <li><a href='#records-create'>create</a></li>
+      <li><a href='#records-update'>update</a></li>
+      <li><a href='#records-destroy'>destroy</a></li>
+  </ul>
+  <h4><a href='#students'>Students</a></h4>
+  <ul>
+      <li><a href='#students-index'>index</a></li>
+  </ul>
+
+
+
+  <hr/>
+
+  <div>
+    <h2 id="records">
+      <a href='#records'>Records</a><br>
+      <small>Create, Read, Update and Delete a Student</small>
+    </h2>
+  </div>
+
+    <div>
+<p>Used to handle the data behind the scenes on the front end side.</p>
+</div>
+
+  <div>
+
+      <hr/>
+
+      <h3 id="records-index">
+      <a href='#records'>Records</a> / <a href='#records-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /students/:student_id/records
+            <br>
+            <small>Get all the students</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<h2 id="label-Full+description">Full description<span><a href="#label-Full+description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Gets all the student records from the database.</p>
+
+
+
+      </div>
+      <hr/>
+
+      <h3 id="records-create">
+      <a href='#records'>Records</a> / <a href='#records-create'>create</a>
+      </h3>
+
+      <div>
+          <h4>
+              POST /students/:student_id/records
+            <br>
+            <small>Create a new student</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<h2 id="label-Full+description">Full description<span><a href="#label-Full+description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Used for creating a new user.</p>
+
+<p>POST the new info along with the params to /records</p>
+
+<h3 id="label-Note">Note<span><a href="#label-Note">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>When a new Student info is given, id is empty. This empty id is posted</p>
+
+<p>along with the rest of the parameters to the server. Server database fills
+the id</p>
+
+<p>and the next time you query for this student record, it is returned with a
+proper id.</p>
+
+          <h4>Examples</h4>
+            <pre class="wiki">&#39;user&#39; : { &#39;host&#39; : &#39;localhost:3000&#39;} 
+</pre>
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>name </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student name</p>
+
+    </li>
+    
+    <li>
+      <strong>grade </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student grade (standard)</p>
+
+    </li>
+    
+    <li>
+      <strong>roll </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student roll number</p>
+
+    </li>
+    
+    <li>
+      <strong>id </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student record id (inside database)</p>
+
+    </li>
+    
+    <li>
+      <strong>email </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must match regular expression
+<code>/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/</code>.</p>
+ ]
+      </small>
+      
+<p>email should fit the regex</p>
+
+    </li>
+    
+</ul>
+
+      </div>
+      <hr/>
+
+      <h3 id="records-update">
+      <a href='#records'>Records</a> / <a href='#records-update'>update</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /students/:student_id/records/:id
+            <br>
+            <small>Update the student info</small>
+          </h4>
+          <h4>
+              PUT /students/:student_id/records/:id
+            <br>
+            <small>Update the student info</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<h2 id="label-Full+description">Full description<span><a href="#label-Full+description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You can update a student using id.</p>
+
+<p>E.g., if student id = “5a1bdd440e72df0a2a5783a4”</p>
+
+<p>POST with updated data to htpp://<a
+href="www.example.com/id/5a1bdd440e72df0a2a5783a4">www.example.com/id/5a1bdd440e72df0a2a5783a4</a></p>
+
+<p>Every student record will have its own unique hash id.</p>
+
+<p>Note: id comes from the database (MongoDB in this case) and varies for
+every record.</p>
+
+
+          <h4>Errors</h4>
+            500
+            Internal server error
+            <pre class="prettyprint lang-yaml">:note: probably something wrong with your code
+</pre>
+
+            <br>
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>name </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student name</p>
+
+    </li>
+    
+    <li>
+      <strong>grade </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student grade (standard)</p>
+
+    </li>
+    
+    <li>
+      <strong>roll </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student roll number</p>
+
+    </li>
+    
+    <li>
+      <strong>id </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student record id (inside database)</p>
+
+    </li>
+    
+    <li>
+      <strong>email </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must match regular expression
+<code>/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/</code>.</p>
+ ]
+      </small>
+      
+<p>email should fit the regex</p>
+
+    </li>
+    
+</ul>
+
+      </div>
+      <hr/>
+
+      <h3 id="records-destroy">
+      <a href='#records'>Records</a> / <a href='#records-destroy'>destroy</a>
+      </h3>
+
+      <div>
+          <h4>
+              DELETE /students/:student_id/records/:id
+            <br>
+            <small>Delete a student</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<h2 id="label-Full+description">Full description<span><a href="#label-Full+description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Send a DELETE request to /records/:id</p>
+
+<p>E.g., if student id = “5a1bdd440e72df0a2a5783a4”</p>
+
+<p>DELETE request will be sent to htpp://<a
+href="www.example.com/id/5a1bdd440e72df0a2a5783a4">www.example.com/id/5a1bdd440e72df0a2a5783a4</a></p>
+
+
+          <h4>Errors</h4>
+            404
+            Not found
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+            500
+            Internal server error
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>name </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student name</p>
+
+    </li>
+    
+    <li>
+      <strong>grade </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student grade (standard)</p>
+
+    </li>
+    
+    <li>
+      <strong>roll </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Student roll number</p>
+
+    </li>
+    
+    <li>
+      <strong>id </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Student record id (inside database)</p>
+
+    </li>
+    
+    <li>
+      <strong>email </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must match regular expression
+<code>/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/</code>.</p>
+ ]
+      </small>
+      
+<p>email should fit the regex</p>
+
+    </li>
+    
+</ul>
+
+      </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h2 id="students">
+      <a href='#students'>Students</a><br>
+      <small>Front end web interface</small>
+    </h2>
+  </div>
+
+    <div>
+<p>This is the main page that user sees and interacts with.</p>
+</div>
+
+  <div>
+
+      <hr/>
+
+      <h3 id="students-index">
+      <a href='#students'>Students</a> / <a href='#students-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /
+            <br>
+            <small>Main(only) page</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<pre>	  	== Full description</pre>
+
+<p>Used to show the front/main page that a user interacts with.</p>
+
+<p>This is the page that a user is exposed to.</p>
+
+
+
+      </div>
+  </div>

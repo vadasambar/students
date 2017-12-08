@@ -34,6 +34,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# apipie for documentation
+# check https://rubygems.org/gems/apipie-rails 
+gem 'apipie-rails', '0.5.6'
+
+# dependency for markdown in apipie
+# https://rubygems.org/gems/maruku
+gem 'maruku', '0.7.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

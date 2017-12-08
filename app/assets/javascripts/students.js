@@ -8,8 +8,9 @@ app.controller("studentsController", function($scope, $resource){
   var csrfToken = document.getElementsByName("csrf-token")[0].getAttribute("content");
   var headerWithCsrf = {"X-CSRF-Token": csrfToken};
 
-  Students = $resource('/records/:id', {id: "@id"}, {save: {method: "POST", headers: headerWithCsrf },                                                                                   delete: {method: "DELETE", headers: headerWithCsrf},
+  Students = $resource('/records/:id', {id: "@id"}, {save: {method: "POST", headers: headerWithCsrf },                                                                                   
                                                      update: {method: "PUT", headers: headerWithCsrf},
+                                                     delete: {method: "DELETE", headers: headerWithCsrf},
                                                      last: {method: "GET", url: "/last"}}); // @id is the id of the object I query from the server 
   
   $scope.toEdit = {};   // edit student details 
@@ -17,7 +18,13 @@ app.controller("studentsController", function($scope, $resource){
   $scope.isInputInvalid = false; 
 
   // show 
-  $scope.students= Students.query();
+  Students.query().$promise.then(function(response){ $scope.students = response; 
+                                                                      console.log(response);});;
+  //console.log($scope.students);
+  // for(var ){
+
+  // }
+  //console.log($scope.students[0]);
 
   // add new 
   $scope.addStudent = function() {
@@ -34,8 +41,9 @@ app.controller("studentsController", function($scope, $resource){
 
       // make sure the student is saved before quering for id 
       Students.save(student).$promise.then(function(saveResponse){
+              console.log(saveResponse);
               Students.last().$promise.then(function(lastResponse){ 
-                $scope.students[index].id = lastResponse.id;});
+                $scope.students[index]["id"] = lastResponse["id"];});
       });  
 
       $scope.isInputInvalid = false;      
@@ -43,7 +51,7 @@ app.controller("studentsController", function($scope, $resource){
       // update new student with its true id when the promise is fulfilled.
       // very hacky but works
       // console.log("LAST STUDENT: ", Students.last());
-      $scope.students[index].id = Students.last(); // put in an object for now to make it display. 
+      $scope.students[index]["id"] = Students.last(); // put in an object for now to make it display. 
       $scope.newStudent = {}; // empty new student so that input fields become empty 
     }
   };
@@ -95,7 +103,8 @@ app.controller("studentsController", function($scope, $resource){
     // console.log("students: ", $scope.students);
     // console.log("to edit: ", $scope.toEdit);
     // console.log("......................../");
-    if (student.id == $scope.toEdit.id) {
+    if (student["id"] == $scope.toEdit["id"]) {
+      console.log("student id", student["id"]);
       return 'edit';
     } else {
       return 'display';
