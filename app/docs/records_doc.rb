@@ -19,6 +19,12 @@ module RecordsDoc
 	# 	api_versions "1", "2"
 	# end
 
+	def_param_group :errors do
+		error code: 400, desc: "Bad request"
+		error code: 404, desc: "Not found"
+		error code: 500, desc: "Internal server error" 
+	end
+
 	def_param_group :student do
 		header 'X-CSRF-Token', 'Token to prevent against cross-site request forgery', required: true  
 		param :name, String, desc: "Student name", required: true
@@ -57,6 +63,7 @@ module RecordsDoc
 	api! "Create a new student"
 	param_group :student
 	param :address, String, desc: "address of the student"
+	param_group :errors
 	description <<-EOS
 		## Description
 		Used for creating a new user. 
@@ -141,8 +148,7 @@ module RecordsDoc
 			DELETE request will be sent to htpp://www.example.com/id/5a1bdd440e72df0a2a5783a4
 	EOS
 	param_group :student
-	error code: 404, desc: "Not found"
-	error code: 500, desc: "Internal server error"
+	param_group :errors
 	def destroy
 	end
 end
